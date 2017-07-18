@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import os
 import requests
-
+import sys  
+reload(sys)  
+sys.setdefaultencoding('utf8')   
 
 def getWeatherText():
     try:
         response = requests.get(
             "http://www.tuling123.com/openapi/api?key=652ae4a714794fe6b01faa990d7a981f&info=%s" % "广州今日天气")
         json = response.json()
-        if json.code == "100000":
-            return json.text
+        if json["code"] == 100000:
+            return json["text"]
         else:
             return ""
     except:
